@@ -12,7 +12,8 @@ Created with React Native and Expo. It help users to track daily spending habits
 
 ## Prerequisites
 
-- Expo Version xx_xx
+- Node 18.16.0 (LTS)
+- Expo SDK 51.0.14
 
 <br/>
 
