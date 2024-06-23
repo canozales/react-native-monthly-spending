@@ -79,15 +79,20 @@ const CategoryInfo = ({ route, navigation }) => {
       <InputIcon {...{ title: "Picture", image, setImage, categoryLists }} />
 
       <AddEditButton {...{ editMode, editMsg: "Edit Category", AddMsg: "Add Category", onPress: handleAddCategory }} />
-      <OutlineButton customClass="mt-4" onPress={toggleModal} title="Delete Category" />
 
-      <ModalCustom
-        isModalVisible={isModalVisible}
-        onYes={handleDelete}
-        onNo={toggleModal}
-        title={"Confirmation"}
-        message={"Are you sure to remove this ?"}
-      />
+      {editMode && (
+        <>
+          <OutlineButton customClass="mt-4" onPress={toggleModal} title="Delete Category" />
+
+          <ModalCustom
+            isModalVisible={isModalVisible}
+            onYes={handleDelete}
+            onNo={toggleModal}
+            title={"Confirmation"}
+            message={"Are you sure to remove this ?"}
+          />
+        </>
+      )}
     </ScrollView>
   );
 };
