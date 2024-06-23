@@ -64,6 +64,14 @@ export const editCategories = async (id, categoryName, categoryImage) => {
   }
 };
 
+export const deleteCategories = async (id) => {
+  try {
+    await db.runAsync("DELETE FROM savedcategories WHERE id = ?", [id]);
+  } catch (e) {
+    throw e;
+  }
+};
+
 // Eg. 2024_05
 export const getItemsByMonth = async (year_month = "") => {
   let currentYearMonth;

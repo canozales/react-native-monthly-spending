@@ -1,4 +1,5 @@
 import Goback from "../components/Goback";
+import ModalCustom from "../components/ModalCustom";
 import SectionTitle from "../components/SectionTitle";
 import InputText from "../components/Input/InputText";
 import InputIcon from "../components/Input/InputIcon";
@@ -8,7 +9,14 @@ import { useToast } from "react-native-toast-notifications";
 import { useState } from "react";
 import { ScrollView } from "react-native";
 import { categoryLists } from "../data/category";
-import { addToCategories, editCategories, updateCategoryName, updateCategoryImage } from "../services/db";
+import { OutlineButton } from "../components/Button/Button";
+import {
+  addToCategories,
+  editCategories,
+  updateCategoryName,
+  updateCategoryImage,
+  deleteCategories,
+} from "../services/db";
 
 const CategoryInfo = ({ route, navigation }) => {
   const { status, categoryName, categoryImage, id } = route.params;
@@ -21,6 +29,19 @@ const CategoryInfo = ({ route, navigation }) => {
 
   const [name, setName] = useState(editMode ? categoryName : "");
   const [image, setImage] = useState(editMode ? categoryImage : "");
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const toggleModal = () => setModalVisible(!isModalVisible);
+
+  const handleDelete = async () => {
+    try {
+      await deleteCategories(id);
+      toast.show("Successfully Deleted", { type: "normal" });
+      navigation.goBack();
+    } catch {
+      toast.show("Error on Delete Category", { type: "normal" });
+    }
+  };
 
   const handleAddCategory = async () => {
     if (name === "" || image === "") {
@@ -58,6 +79,15 @@ const CategoryInfo = ({ route, navigation }) => {
       <InputIcon {...{ title: "Picture", image, setImage, categoryLists }} />
 
       <AddEditButton {...{ editMode, editMsg: "Edit Category", AddMsg: "Add Category", onPress: handleAddCategory }} />
+      <OutlineButton customClass="mt-4" onPress={toggleModal} title="Delete Category" />
+
+      <ModalCustom
+        isModalVisible={isModalVisible}
+        onYes={handleDelete}
+        onNo={toggleModal}
+        title={"Confirmation"}
+        message={"Are you sure to remove this ?"}
+      />
     </ScrollView>
   );
 };

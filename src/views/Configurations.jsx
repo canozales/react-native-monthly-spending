@@ -1,5 +1,5 @@
-import Modal from "react-native-modal";
 import Goback from "../components/Goback";
+import ModalCustom from "../components/ModalCustom";
 import SectionTitle from "../components/SectionTitle";
 import InputText from "../components/Input/InputText";
 
@@ -87,15 +87,13 @@ const Configurations = ({ route, navigation }) => {
       <OutlineButton customClass="mt-12" onPress={toggleModal} title="Clear Database" />
       <OutlineButton customClass="mt-4" onPress={handleExportHistory} title="Export Spending History" />
 
-      <Modal backdropTransitionOutTiming={0} animationIn={"fadeIn"} animationOut={"fadeOut"} isVisible={isModalVisible}>
-        <View className="bg-white rounded-lg py-4">
-          <Text className="text-prm text-[20px] font-semibold text-center">Confirmation</Text>
-          <Text className="text-prm text-[16px] mt-1 font-semibold text-center">Are you sure to clear all data ?</Text>
-
-          <BackgroundButton customClass="mt-6" onPress={handleClearData} title="Yes" />
-          <OutlineButton customClass="mt-3" onPress={toggleModal} title="No" />
-        </View>
-      </Modal>
+      <ModalCustom
+        isModalVisible={isModalVisible}
+        onYes={handleClearData}
+        onNo={toggleModal}
+        title={"Confirmation"}
+        message={"Are you sure to clear all data ?"}
+      />
     </ScrollView>
   );
 };
