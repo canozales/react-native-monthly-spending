@@ -19,6 +19,8 @@ Created with React Native and Expo. It help users to track daily spending habits
 
 ## Snippet
 
-<img src="screenshot/screenshot1.png" alt="Screenshot 1" width="240"/>
-<img src="screenshot/screenshot2.png" alt="Screenshot 2" width="240"/>
-<img src="screenshot/screenshot3.png" alt="Screenshot 3" width="240"/>
+<div style="display: flex; flex-wrap: wrap;">
+<img src="screenshot/screenshot1.png" alt="Screenshot 1" width="240px"/>
+<img src="screenshot/screenshot2.png" alt="Screenshot 2" width="240px"/>
+<img src="screenshot/screenshot3.png" alt="Screenshot 3" width="240px"/>
+</div>
